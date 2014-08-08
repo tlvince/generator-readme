@@ -8,4 +8,4 @@
 
 ## License
 
-Licensed under the [MIT license](http://<%= githubUser %>.mit-license.org).
+Released under the [MIT license](http://<%= githubUser %>.mit-license.org).
