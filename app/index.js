@@ -6,20 +6,19 @@ var gitConfig = require('git-config');
 
 var ReadmeGenerator = yeoman.generators.Base.extend({
   init: function() {
+    this.author = this.email = this.githubUser = '';
+    this.year = new Date().getFullYear();
+
     var done = this.async();
     gitConfig(function(err, config) {
       if(err) {
-        return done(err);
+        return done();
       }
-
       this.author = config.user.name;
       this.email = config.user.email;
       this.githubUser = config.github.user;
-
       done();
     }.bind(this));
-
-    this.year = new Date().getFullYear();
   },
 
   askFor: function() {
