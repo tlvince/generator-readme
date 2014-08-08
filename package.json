@@ -1,7 +1,7 @@
 {
   "name": "generator-readme",
   "version": "0.1.0",
-  "description": "Yeoman generator",
+  "description": "A Yeoman generator to create a readme file",
   "license": "MIT",
   "main": "app/index.js",
   "repository": "tlvince/generator-readme",
