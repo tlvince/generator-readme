@@ -1,0 +1,36 @@
+{
+  "name": "generator-readme",
+  "version": "0.1.0",
+  "description": "Yeoman generator",
+  "license": "MIT",
+  "main": "app/index.js",
+  "repository": "tlvince/generator-readme",
+  "author": {
+    "name": "Tom Vincent",
+    "email": "github@tlvince.com",
+    "url": "https://github.com/tlvince"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "files": [
+    "app"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "dependencies": {
+    "git-config": "0.0.6",
+    "yeoman-generator": "~0.16.0",
+    "yosay": "^0.1.0"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  },
+  "peerDependencies": {
+    "yo": ">=1.0.0"
+  }
+}
