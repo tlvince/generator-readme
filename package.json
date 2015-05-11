@@ -1,6 +1,6 @@
 {
-  "name": "generator-readme",
-  "version": "0.1.0",
+  "name": "generator-readmemd",
+  "version": "0.1.2",
   "description": "A Yeoman generator to create a readme file",
   "license": "MIT",
   "main": "app/index.js",
