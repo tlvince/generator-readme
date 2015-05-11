@@ -14,6 +14,7 @@ yo readmemd
 ## Authors
 
 © 2014 Tom Vincent <http://tlvince.com/contact>
+
 © 2015 Vladislav Bezverkhiy <rabbiabram@gmail.com>
 
 ## License
