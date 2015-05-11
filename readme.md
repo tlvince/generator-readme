@@ -1,6 +1,7 @@
 # generator-readmemd
 
-> A Yeoman generator to create a readme file
+> A Yeoman generator to create a readme file.
+
 Fork of [generator-readme](https://github.com/tlvince/generator-readme)
 
 ## Usage
