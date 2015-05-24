@@ -16,7 +16,10 @@ var ReadmeGenerator = yeoman.generators.Base.extend({
       }
       this.author = config.user.name;
       this.email = config.user.email;
-      this.githubUser = config.github.user;
+      this.githubUser = null;
+      if (config.github && config.github.user) {
+        this.githubUser = config.github.user;
+      }
       done();
     }.bind(this));
   },
