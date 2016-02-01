@@ -15,6 +15,20 @@
 
 > <%= description %>
 
+<% if (isNodeModule) { -%>
+## Installation
+
+```shell
+npm install --save <%= name %>
+```
+
+## Usage
+
+```js
+var <%= camelCaseName %> = require('<%= name %>')
+```
+
+<% } -%>
 ## Author
 
 © <%= year %> <%= author %> <<%= email %>> (<%= website %>)

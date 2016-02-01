@@ -1,6 +1,7 @@
 'use strict';
 
 var yeoman = require('yeoman-generator');
+var camelCase = require('lodash.camelcase');
 var objectAssign = require('object-assign');
 
 var ReadmeGenerator = yeoman.Base.extend({
@@ -75,8 +76,9 @@ var ReadmeGenerator = yeoman.Base.extend({
   writing: function() {
     const pkg = this.fs.readJSON(this.destinationPath('package.json'), {})
     if (!this.props.license) {
-      this.props.license = pkg.license || 'MIT'
+      this.props.license = pkg.license || 'MIT';
     }
+    this.props.camelCaseName = camelCase(this.props.name);
     this.template('_README.md', 'README.md', this.props);
   }
 });

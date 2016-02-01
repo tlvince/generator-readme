@@ -23,6 +23,7 @@
     "yeoman-generator"
   ],
   "dependencies": {
+    "lodash.camelcase": "^4.0.1",
     "object-assign": "^4.0.1",
     "yeoman-generator": "^0.22.1"
   },
