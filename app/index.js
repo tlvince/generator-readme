@@ -1,76 +1,83 @@
 'use strict';
 
 var yeoman = require('yeoman-generator');
-var yosay = require('yosay');
-var gitConfig = require('git-config');
+var objectAssign = require('object-assign');
 
-var ReadmeGenerator = yeoman.generators.Base.extend({
-  init: function() {
-    this.author = this.email = this.githubUser = '';
-    this.year = new Date().getFullYear();
-
+var ReadmeGenerator = yeoman.Base.extend({
+  prompting: function() {
     var done = this.async();
-    gitConfig(function(err, config) {
-      if(err) {
-        return done();
-      }
-      this.author = config.user.name;
-      this.email = config.user.email;
-      this.githubUser = null;
-      if (config.github && config.github.user) {
-        this.githubUser = config.github.user;
-      }
-      done();
-    }.bind(this));
-  },
-
-  askFor: function() {
-    var done = this.async();
-
-    this.log(yosay('Welcome to the marvelous Readme generator!'));
 
     var prompts = [
       {
         type: 'input',
         name: 'name',
         message: 'What is your project called?',
-        default: this.appname
+        default: this.options.appname || this.appname,
+        when: !this.options.appname
       },
       {
         type: 'input',
         name: 'description',
-        message: 'Briefly describe the project'
+        message: 'Briefly describe the project',
+        default: this.options.description,
+        when: !this.options.description
       },
       {
         type: 'input',
         name: 'author',
         message: 'What is your full name?',
-        default: this.author
+        default: this.options.author || this.user.git.name(),
+        when: !this.options.author
       },
       {
         type: 'input',
         name: 'email',
         message: 'What is your email address?',
-        default: this.email
+        default: this.options.email || this.user.git.email(),
+        when: !this.options.email
+      },
+      {
+        type: 'input',
+        name: 'website',
+        message: 'What is the URL of your website?',
+        store: true,
+        default: this.options.website,
+        when: !this.options.website,
+        validate: x => x.length > 0 ? true : 'You have to provide a website URL',
       },
       {
         type: 'input',
         name: 'githubUser',
         message: 'What is your GitHub username?',
-        default: this.githubUser
+        default: this.options.githubUser || this.githubUser,
+        when: !this.options.githubUser,
+        validate: x => x.length > 0 ? true : 'You have to provide a username',
+        store: true
       }
     ];
 
     this.prompt(prompts, function(props) {
-      for (var prop in props) {
-        this[prop] = props[prop];
-      }
+      this.props = objectAssign({
+        name: this.options.appname,
+        description: this.options.description,
+        author: this.options.author,
+        email: this.options.email,
+        website: this.options.website,
+        githubUser: this.options.githubUser,
+        license: this.options.license,
+        year: new Date().getFullYear(),
+        isNodeModule: this.options.isNodeModule || false
+      }, props);
       done();
     }.bind(this));
   },
 
-  readme: function() {
-    this.template('_readme.md', 'readme.md');
+  writing: function() {
+    const pkg = this.fs.readJSON(this.destinationPath('package.json'), {})
+    if (!this.props.license) {
+      this.props.license = pkg.license || 'MIT'
+    }
+    this.template('_README.md', 'README.md', this.props);
   }
 });
 
