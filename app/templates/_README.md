@@ -5,7 +5,7 @@
 [![npm version][npm-image]][npm-url]
 [![License][license-image]][license-url]
 
-[travis-url]: https://travis-ci.com/<%= githubUser %>/<%= name %>
+[travis-url]: https://travis-ci.org/<%= githubUser %>/<%= name %>
 [travis-image]: https://img.shields.io/travis/<%= githubUser %>/<%= name %>.svg
 [npm-url]: https://www.npmjs.com/package/<%= name %>
 [npm-image]: https://img.shields.io/npm/v/<%= name %>.svg
